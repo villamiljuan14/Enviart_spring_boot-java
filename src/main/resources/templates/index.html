@@ -1,154 +1,163 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enviart</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensajería de Mercancías – Enviart</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- CSS estático -->
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 
 <body class="antialiased bg-gray-50 text-gray-800">
 
-    <!-- Navbar -->
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a th:href="@{/}" class="flex items-center space-x-2">
-                <img th:src="@{/images/Logo.png}" class="h-10 w-auto" alt="Logo Enviart">
-                <span class="font-bold text-xl text-black-600">Enviart</span>
-            </a>
-            <nav class="hidden md:flex space-x-6">
-                <a th:href="@{/}" class="hover:text-red-600">Inicio</a>
-                <a th:href="@{/servicios}" class="hover:text-red-600">Servicios</a>
-                <a th:href="@{/rastrear}" class="hover:text-red-600">Rastrear envío</a>
-                <a th:href="@{/contacto}" class="hover:text-red-600">Contacto</a>
-            </nav>
-            <div class="flex space-x-3">
-                <a th:href="@{/login}" class="px-4 py-2 border rounded hover:bg-gray-100">Ingresar</a>
-                <a th:href="@{/register}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Registrarse</a>
-            </div>
+  <!-- 🔹 Navbar -->
+  <header class="fixed top-0 left-0 w-full z-20 bg-black/40 backdrop-blur-md text-white">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a th:href="@{/}" class="flex items-center space-x-2">
+        <img th:src="@{/images/Logo.png}" alt="Logo Enviart" class="h-10 w-auto">
+        <span class="font-bold text-xl text-white">Enviart</span>
+      </a>
+
+      <nav class="hidden md:flex space-x-6">
+        <a th:href="@{/}" class="hover:text-blue-400 transition">Inicio</a>
+        <a th:href="@{/servicios}" class="hover:text-blue-400 transition">Servicios</a>
+        <a th:href="@{/rastrear}" class="hover:text-blue-400 transition">Rastrear Envío</a>
+        <a th:href="@{/contacto}" class="hover:text-blue-400 transition">Contacto</a>
+      </nav>
+
+      <div class="flex space-x-3">
+        <a th:href="@{/login}" class="px-4 py-2 border border-white/40 rounded hover:bg-white/10 transition">Ingresar</a>
+        <a th:href="@{/register}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Registrarse</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🔹 Carrusel -->
+  <section class="carousel-container w-full">
+    <div id="carousel" class="flex slide h-screen">
+
+      <!-- Slide 1 -->
+      <div class="carousel-slide" th:style="'background-image: url(' + @{/images/bogota.jpg} + ')'">
+        <div class="p-6 text-center bg-black/0 h-full flex flex-col justify-center items-center text-white">
+          <h2 class="text-5xl font-bold mb-2 fadeInUp">Envíos Express</h2>
+          <p class="text-lg fadeInUp-delay">Entrega rápida y segura en todo el país.</p>
         </div>
-    </header>
+      </div>
 
-    <!-- Hero -->
-    <section class="bg-gray-100 py-20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-            <div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                    Tu envío, rápido y seguro <br> en todo Colombia
-                </h1>
-                <p class="mt-4 text-lg text-gray-600">
-                    Con Enviart tus paquetes llegan donde quieras, cuando quieras.
-                </p>
-                <div class="mt-6 flex space-x-4">
-                    <a th:href="@{/cotizar}" class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-                        Cotizar Envío
-                    </a>
-                    <a th:href="@{/rastrear}" class="px-6 py-3 border rounded-lg hover:bg-gray-100 transition">
-                        Rastrear Envío
-                    </a>
-                </div>
-            </div>
-
-            <div class="flex justify-center">
-                <video th:src="@{/videos/domiciliario.mp4}" class="w-96" autoplay muted loop playsinline></video>
-            </div>
+      <!-- Slide 2 -->
+      <div class="carousel-slide" th:style="'background-image: url(' + @{/images/Medellín.jpg} + ')'">
+        <div class="p-6 text-center bg-black/0 h-full flex flex-col justify-center items-center text-white">
+          <h2 class="text-5xl font-bold mb-2 fadeInUp">Seguimiento en Tiempo Real</h2>
+          <p class="text-lg fadeInUp-delay">Monitorea cada paso de tu envío desde nuestro panel.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Servicios -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-900">Nuestros Servicios</h2>
+      <!-- Slide 3 -->
+      <div class="carousel-slide" th:style="'background-image: url(' + @{/images/cali.jpg} + ')'">
+        <div class="p-6 text-center bg-black/0 h-full flex flex-col justify-center items-center text-white">
+          <h2 class="text-5xl font-bold mb-2 fadeInUp">Cobertura Nacional</h2>
+          <p class="text-lg fadeInUp-delay">Llegamos a todas las ciudades, sin importar el tamaño.</p>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide" th:style="'background-image: url(' + @{/images/ViiladeLeyva.jpg} + ')'">
+        <div class="p-6 text-center bg-black/0 h-full flex flex-col justify-center items-center text-white">
+          <h2 class="text-5xl font-bold mb-2 fadeInUp">Seguridad y Confianza</h2>
+          <p class="text-lg fadeInUp-delay">Tu carga protegida de principio a fin.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de navegación -->
+    <button id="prev" class="nav-btn nav-prev"><</button>
+    <button id="next" class="nav-btn nav-next">></button>
+  </section>
+
+  <!-- 🔹 Sección de Cards -->
+  <section class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-10 text-blue-400">Destacados</h2>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-2xl transition duration-300">
+          <img th:src="@{/images/bogota.jpg}" alt="Servicio Express" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Envíos Express</h3>
+            <p class="text-gray-300 text-sm mb-4">Entrega rápida y segura en toda Colombia.</p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Ver más</button>
+          </div>
         </div>
 
-        <div class="mt-10 flex flex-row flex-wrap justify-center gap-6">
-
-            <!-- Servicio 1 -->
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <div class="bg-white p-4 rounded-md shadow-md">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Envíos Nacionales</h5>
-                    <p class="mb-3 font-normal text-gray-700">Entrega rápida y segura en todo el país.</p>
-                    <img th:src="@{/images/nacional.png}" alt="Envíos Nacionales" class="w-96">
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
-                        Leer más
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Servicio 2 -->
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <div class="bg-white p-4 rounded-md shadow-md">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Envíos Internacionales</h5>
-                    <p class="mb-3 font-normal text-gray-700">Conectamos Colombia con el mundo.</p>
-                    <img th:src="@{/images/internacional.png}" alt="Envíos Internacionales" class="w-96">
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
-                        Leer más
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Servicio 3 -->
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <div class="bg-white p-4 rounded-md shadow-md">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Logística Empresarial</h5>
-                    <p class="mb-3 font-normal text-gray-700">Soluciones de transporte para tu negocio.</p>
-                    <img th:src="@{/images/Empresarial.png}" alt="Logística Empresarial" class="w-96">
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
-                        Leer más
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+        <!-- Card 2 -->
+        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-2xl transition duration-300">
+          <img th:src="@{/images/Medellín.jpg}" alt="Rastreo" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Rastreo en Tiempo Real</h3>
+            <p class="text-gray-300 text-sm mb-4">Monitorea tu envío desde nuestra plataforma.</p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Rastrear</button>
+          </div>
         </div>
-    </section>
 
-    <!-- Rastreo -->
-    <section class="py-16 bg-blue-50">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-2xl font-bold">Rastrea tu envío</h2>
-            <form th:action="@{/rastrear}" method="get" class="mt-6 flex">
-                <input type="text" name="guia" placeholder="Ingresa tu número de guía"
-                       class="w-full px-4 py-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                <button type="submit" class="px-6 bg-black text-white rounded-r-lg hover:bg-gray-800 transition">
-                    Rastrear
-                </button>
-            </form>
+        <!-- Card 3 -->
+        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-2xl transition duration-300">
+          <img th:src="@{/images/cali.jpg}" alt="Cobertura" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Cobertura Nacional</h3>
+            <p class="text-gray-300 text-sm mb-4">Llegamos a cada rincón del país sin límites.</p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Conoce más</button>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-            <div>
-                <h3 class="font-bold text-lg">Enviart</h3>
-                <p class="mt-2 text-gray-400">Tu aliado en envíos rápidos y seguros.</p>
-            </div>
-            <div>
-                <h3 class="font-bold text-lg">Enlaces</h3>
-                <ul class="mt-2 space-y-2">
-                    <li><a th:href="@{/servicios}" class="hover:text-gray-400">Servicios</a></li>
-                    <li><a th:href="@{/rastrear}" class="hover:text-gray-400">Rastrear</a></li>
-                    <li><a th:href="@{/contacto}" class="hover:text-gray-400">Contacto</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-bold text-lg">Contacto</h3>
-                <p class="mt-2 text-gray-400">📍 Bogotá, Colombia</p>
-                <p class="text-gray-400">☎ 300 123 4567</p>
-                <p class="text-gray-400">✉ contacto@enviart.com</p>
-            </div>
-        </div>
-        <div class="mt-8 text-center text-gray-500 text-sm">
-            © <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span> Enviart. Todos los derechos reservados.
-        </div>
-    </footer>
+  <!-- 🔹 Rastreo -->
+  <section class="py-16 bg-gray-900 text-white text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-4 text-blue-400">Rastrea tu envío</h2>
+      <p class="text-gray-300 mb-6">Ingresa el número de guía para conocer el estado de tu envío.</p>
+      <form th:action="@{/rastrear}" method="get" class="flex">
+        <input type="text" name="guia" placeholder="Número de guía"
+          class="w-full px-4 py-3 border border-gray-600 bg-gray-800 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        <button type="submit" class="px-6 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition">
+          Rastrear
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 🔹 Footer -->
+  <footer class="bg-gray-950 text-white py-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+      <div>
+        <h3 class="font-bold text-lg text-blue-400">Enviart</h3>
+        <p class="mt-2 text-gray-400">Tu aliado en envíos rápidos y seguros.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg text-blue-400">Enlaces</h3>
+        <ul class="mt-2 space-y-2">
+          <li><a th:href="@{/servicios}" class="hover:text-blue-400">Servicios</a></li>
+          <li><a th:href="@{/rastrear}" class="hover:text-blue-400">Rastrear</a></li>
+          <li><a th:href="@{/contacto}" class="hover:text-blue-400">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg text-blue-400">Contacto</h3>
+        <p class="mt-2 text-gray-400">📍 Bogotá, Colombia</p>
+        <p class="text-gray-400">☎ 300 123 4567</p>
+        <p class="text-gray-400">✉ contacto@enviart.com</p>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-gray-500 text-sm">
+      © <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span> Enviart. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- Script estático -->
+  <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
