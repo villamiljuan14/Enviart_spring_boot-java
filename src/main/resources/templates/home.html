@@ -1,83 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-
-    <!-- TailwindCSS -->
+    <title>Inicio - Acceso Usuarios</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-50 font-sans">
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-2xl text-center">
+            
+            <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
 
-<div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center">
-    <h2 class="text-2xl font-bold text-gray-700 mb-4">Bienvenido al sistema</h2>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">¡Inicio de Sesión Exitoso!</h1>
+            <p class="text-lg text-gray-600 mb-6">Bienvenido/a al sistema.</p>
 
-    <p class="text-gray-600 mb-6">
-        Tu rol es: <span th:text="${rol}" class="font-semibold text-blue-600">USER</span>
-    </p>
+            <div class="border border-gray-200 p-6 rounded-lg text-left mb-8">
+                <p class="text-gray-700 mb-2">
+                    <span class="font-semibold text-indigo-600">Usuario autenticado:</span> 
+                    <span th:text="${email}">usuario@correo.com</span>
+                </p>
+                <p class="text-gray-700">
+                    <span class="font-semibold text-indigo-600">Rol asignado:</span> 
+                    <span th:text="${role}">ADMIN</span>
+                </p>
+            </div>
 
-    <!-- Opciones según rol -->
-    <nav class="space-y-4">
-        <!-- Opción ADMIN -->
-        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-            <a th:href="@{/usuarios}" 
-               class="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
-               Ver usuarios
-            </a>
+            <div sec:authorize="hasRole('ADMIN')" class="mb-6 bg-yellow-100 p-3 rounded-lg border border-yellow-300">
+                <p class="font-semibold text-yellow-800">Acceso de Administrador: Puedes ver información sensible y gestionar usuarios.</p>
+                <a th:href="@{/usuarios}" class="text-sm text-yellow-600 hover:underline">Ir a Gestión de Usuarios</a>
+            </div>
+
+            <!-- Botón de Logout -->
+            <form th:action="@{/logout}" method="post" class="mt-4">
+                <button type="submit" 
+                    class="w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-bold rounded-lg shadow-md hover:bg-red-700 transition transform hover:scale-105">
+                    Cerrar Sesión
+                </button>
+            </form>
+            
         </div>
-
-        <!-- Opción USER -->
-        <div th:if="${#authorization.expression('hasRole(''USER'')')}">
-            <a th:href="@{/perfil}" 
-               class="block bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition">
-               Editar mi perfil
-            </a>
-        </div>
-    </nav>
-
-    <!-- Mensaje de éxito -->
-    <div id="mensajeExito" 
-         th:if="${param.actualizado}" 
-         class="mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative animate-fadeIn">
-        ¡Tu perfil ha sido actualizado correctamente!
     </div>
-
-    <!-- Botón de logout -->
-    <form th:action="@{/logout}" method="post" class="mt-8">
-        <button type="submit"
-                class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600 transition">
-            Cerrar sesión
-        </button>
-    </form>
-</div>
-
-<!-- Animación y desaparición del mensaje -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const mensaje = document.getElementById("mensajeExito");
-        if (mensaje) {
-            setTimeout(() => {
-                mensaje.style.transition = "opacity 0.5s ease";
-                mensaje.style.opacity = "0";
-                setTimeout(() => mensaje.remove(), 500);
-            }, 4000);
-        }
-    });
-</script>
-
-<!-- Animación Tailwind -->
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-out;
-}
-</style>
-
 </body>
 </html>
-

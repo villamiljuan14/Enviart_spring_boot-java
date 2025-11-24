@@ -23,13 +23,20 @@
             <!-- Panel derecho (form login) -->
             <div class="w-full md:w-1/2 p-8">
                 <div class="flex justify-center mb-6">
-                    <img th:src="@{/images/Logo.png}" alt="Logo" class="h-12">
+                    <!-- Asegúrate de tener esta imagen en /static/images/Logo.png -->
+                    <img th:src="@{/images/Logo.png}" alt="Logo" class="h-12"> 
                 </div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Iniciar Sesión</h2>
 
+                <!-- Mensaje de registro exitoso (desde UsuarioController) -->
+                <div th:if="${param.registroExitoso}" 
+                     class="mb-4 text-indigo-600 text-sm bg-indigo-100 border border-indigo-300 rounded-lg p-3">
+                    ¡Registro exitoso! Por favor, inicia sesión con tu email y contraseña.
+                </div>
+
                 <!-- Mensaje de error (usuario o contraseña incorrectos) -->
                 <div th:if="${param.error}" class="mb-4 text-red-600 text-sm bg-red-100 border border-red-300 rounded-lg p-3">
-                    Usuario o contraseña incorrectos.
+                    Email o contraseña incorrectos.
                 </div>
 
                 <!-- Mensaje de sesión cerrada -->
@@ -40,9 +47,11 @@
 
                 <form th:action="@{/login}" method="post">
                     <div class="mb-4">
-                        <label for="username" class="block text-gray-700 font-medium mb-1">Usuario o Email</label>
-                        <input id="username" type="text" name="username" required autofocus
-                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200">
+                        <label for="email" class="block text-gray-700 font-medium mb-1">Email</label>
+                        <!-- CAMBIO CLAVE: name="email" para coincidir con SecurityConfig -->
+                        <input id="email" type="email" name="email" required autofocus
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
+                            placeholder="tucorreo@ejemplo.com">
                     </div>
 
                     <div class="mb-4">
@@ -79,8 +88,14 @@
             if (mensaje) {
                 mensaje.style.display = "none";
             }
+            // También ocultamos el mensaje de registro exitoso después de un tiempo
+            const registroMensaje = document.querySelector('[th\\:if="${param.registroExitoso}"]');
+             if (registroMensaje) {
+                setTimeout(() => {
+                    registroMensaje.style.display = 'none';
+                }, 5000); // Ocultar después de 5 segundos
+            }
         }, 2000);
     </script>
 </body>
-</html>
-
+</html>|

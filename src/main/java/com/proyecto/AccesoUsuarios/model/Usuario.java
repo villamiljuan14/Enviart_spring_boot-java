@@ -1,85 +1,104 @@
 package com.proyecto.AccesoUsuarios.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data 
+@NoArgsConstructor 
+@AllArgsConstructor 
 @Table(name = "usuarios")
 public class Usuario {
 
+    // -------------------------------------------------------------------------
+    // 1. IDENTIFICADOR (Primary Key)
+    // -------------------------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
-    @Column(nullable = false, unique = true)
-    private String userName;
+    // -------------------------------------------------------------------------
+    // 2. DATOS CORE DEL NEGOCIO
+    // -------------------------------------------------------------------------
+    @Column(name = "doc_usuario", unique = true, nullable = false, length = 45)
+    private String docUsuario;
 
-    @Column(nullable = false)
+    @Column(name = "tipo_documento", nullable = false, length = 20)
+    private String tipoDocumento; 
+
+    @Column(name = "primer_nombre", nullable = false, length = 80)
+    private String primerNombre;
+
+    @Column(name = "segundo_nombre", length = 80)
+    private String segundoNombre;
+
+    @Column(name = "primer_apellido", nullable = false, length = 80)
+    private String primerApellido;
+
+    @Column(name = "segundo_apellido", length = 80)
+    private String segundoApellido;
+
+    @Column(name = "telefono", length = 45)
+    private String telefono;
+
+    @Column(name = "email", nullable = false, unique = true, length = 120)
     private String email;
 
-    @Column(nullable = false)
+    // -------------------------------------------------------------------------
+    // 3. SEGURIDAD
+    // -------------------------------------------------------------------------
+    @Column(name = "contrasena_usuario", nullable = false)
     private String password;
+   @Column(name = "estado_usuario",nullable = false,
+    columnDefinition = "TINYINT(1)")
+    private Boolean estadoUsuario;
 
-    @Column(nullable = false)
-    private String rol;
 
-    @Transient
-    private String passwordConfirm;
+    @Column(name = "two_factor_secret")
+    private String twoFactorSecret;
 
-    // ======== Getters y Setters ========
+    // -------------------------------------------------------------------------
+    // 4. RELACIONES
+    // -------------------------------------------------------------------------
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rol_id_rol", nullable = false)
+    private Rol rol;
 
-    public Long getId() {
-        return id;
+    // -------------------------------------------------------------------------
+    // 5. AUDITORÍA
+    // -------------------------------------------------------------------------
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    // -------------------------------------------------------------------------
+    // 6. CICLO DE VIDA JPA
+    // -------------------------------------------------------------------------
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }
-
-
