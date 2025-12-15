@@ -1,177 +1,252 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring Boot" width="200" height="55"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" alt="Flutter" width="200" height="55"/>
 </p>
 
-<h1 align="center">🚀 Proyecto Spring Boot – Enviart</h1>
+<h1 align="center">🚀 Enviart - Delivery Tracking App</h1>
 
 <p align="center">
-  Aplicación web desarrollada con <b>Spring Boot</b> para la gestión de acceso de usuarios y administración de envíos de mercancía.
+  Aplicación móvil desarrollada con <b>Flutter</b> para el rastreo y gestión de envíos de mercancía en tiempo real.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Spring%20Boot-3.3.0-brightgreen?logo=springboot" alt="Spring Boot"/>
-  <img src="https://img.shields.io/badge/Java-17-orange?logo=coffeescript" alt="Java"/>
+  <img src="https://img.shields.io/badge/Flutter-3.10-02569B?logo=flutter" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Dart-3.0-0175C2?logo=dart" alt="Dart"/>
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"/>
-  <img src="https://img.shields.io/badge/Build-Maven-red?logo=apachemaven" alt="Maven"/>
+  <img src="https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web-brightgreen" alt="Platforms"/>
 </p>
 
 ---
 
-## 🧱 Tecnologías utilizadas
+## 🧱 Tecnologías Utilizadas
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" width="55" height="55"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring Boot" width="55" height="55"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" width="55" height="55"/>
-  <img src="https://cdn.worldvectorlogo.com/logos/tailwindcss.svg" alt="TailwindCSS" width="55" height="55"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="55" height="55"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thymeleaf/thymeleaf-original.svg" alt="Thymeleaf" width="55" height="55"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" alt="Flutter" width="55" height="55"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg" alt="Dart" width="55" height="55"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android" width="55" height="55"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="iOS" width="55" height="55"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" alt="Web" width="55" height="55"/>
 </p>
 
 ---
 
-## ⚙️ Requisitos previos
+## ⚙️ Requisitos Previos
 
 Antes de ejecutar el proyecto asegúrate de tener instalado:
 
-- [Java JDK 17 o superior](https://www.oracle.com/java/technologies/javase-downloads.html)
-- [Maven 3.8+](https://maven.apache.org/)
-- [MySQL o MariaDB](https://www.mysql.com/)
+- [Flutter SDK 3.10.3 o superior](https://flutter.dev/docs/get-started/install)
+- [Dart SDK](https://dart.dev/get-dart)
 - [Git](https://git-scm.com/)
-- Un IDE como **IntelliJ IDEA**, **Eclipse** o **VS Code**
+- Un IDE como **Android Studio**, **VS Code** o **IntelliJ IDEA**
+- Emulador de Android/iOS o dispositivo físico
 
 ---
 
-## 🔧 Instalación y configuración
+## 🔧 Instalación y Configuración
 
-1. **Clonar el repositorio:**
-
-   ```bash
-   git clone https://github.com/villamiljuan14/Enviart_spring_boot-java.git
-   cd Enviart_spring_boot-java
-   ```
-
-2. **Configurar la base de datos:**
-
-   Edita el archivo `src/main/resources/application.properties` o `application.yml`:
-
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/enviart_db
-   spring.datasource.username=root
-   spring.datasource.password=tu_contraseña
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
-   ```
-
-3. **Instalar dependencias y compilar:**
-
-   ```bash
-   mvn clean install
-   ```
-
-4. **Ejecutar el proyecto:**
-
-   ```bash
-   mvn spring-boot:run
-   ```
-
-   o ejecuta directamente el archivo principal:
-
-   ```bash
-   src/main/java/com/proyecto/AccesoUsuarios/AccesoUsuariosApplication.java
-   ```
-
----
-
-## 🌐 Acceso a la aplicación
-
-Una vez iniciado el servidor, abre tu navegador y entra a:
-
-```
-http://localhost:8080/
-```
-
----
-
-## 🔑 Estructura del proyecto
-
-```
-src/
-├── main/
-│   ├── java/com/proyecto/AccesoUsuarios/
-│   │   ├── controller/   # Controladores (lógica web)
-│   │   ├── model/        # Entidades JPA
-│   │   ├── repository/   # Repositorios (DAO)
-│   │   ├── service/      # Lógica de negocio
-│   │   └── AccesoUsuariosApplication.java
-│   └── resources/
-│       ├── static/       # Archivos CSS, JS, imágenes
-│       ├── templates/    # Vistas Thymeleaf (.html)
-│       └── application.properties
-└── test/                 # Pruebas unitarias
-```
-
----
-
-## 🧠 Características principales
-
-- Registro e inicio de sesión de usuarios.  
-- Roles con **Spring Security** (ADMIN / USER).  
-- Conexión a base de datos relacional.  
-- Interfaz responsiva con **TailwindCSS**.  
-- Plantillas dinámicas con **Thymeleaf**.  
-- Integración con **JPA/Hibernate**.
-
----
-
-## 🧪 Pruebas
-
-Ejecuta los tests con:
+### 1️⃣ Clonar el Repositorio
 
 ```bash
-mvn test
+git clone https://github.com/tu-usuario/Enviart-Flutter.git
+cd Enviart-Flutter/app
+```
+
+### 2️⃣ Instalar Dependencias
+
+```bash
+flutter pub get
+```
+
+### 3️⃣ Configurar Dispositivo
+
+**Para Android:**
+```bash
+flutter devices  # Verifica los dispositivos disponibles
+flutter run      # Ejecuta en el dispositivo seleccionado
+```
+
+**Para iOS:**
+```bash
+flutter run -d ios  # Requiere macOS
+```
+
+**Para Web:**
+```bash
+flutter run -d chrome
 ```
 
 ---
 
-## 🧰 Scripts útiles
+## 🚀 Ejecución del Proyecto
+
+### Modo Debug (desarrollo):
+
+```bash
+flutter run
+```
+
+### Modo Release (producción):
+
+```bash
+flutter run --release
+```
+
+### Compilar APK para Android:
+
+```bash
+flutter build apk --split-per-abi
+```
+
+### Compilar App Bundle para Play Store:
+
+```bash
+flutter build appbundle
+```
+
+---
+
+## 📱 Plataformas Soportadas
+
+| Plataforma | Estado |
+|-----------|--------|
+| Android | ✅ Completamente soportada |
+| iOS | ✅ Completamente soportada |
+| Web | ✅ Completamente soportada |
+| Windows | ✅ Completamente soportada |
+| macOS | ✅ Completamente soportada |
+| Linux | ✅ Completamente soportada |
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+lib/
+├── main.dart                 # Punto de entrada
+├── data/
+│   ├── app_colors.dart      # Constantes de colores
+│   └── mock_data.dart       # Datos de prueba
+├── screens/
+│   ├── home_screen.dart     # Pantalla de inicio
+│   ├── list_screen.dart     # Lista de envíos
+│   └── detail_screen.dart   # Detalle de envío
+└── widgets/
+    └── status_color_util.dart  # Utilidades
+
+assets/
+├── images/
+│   └── Logo.avif
+└── icon/
+    └── Logo.png
+
+pubspec.yaml                 # Configuración del proyecto
+```
+
+---
+
+## 🎨 Características Principales
+
+✨ **Pantalla de Inicio**
+- Carga asincrónica con FutureBuilder
+- Diseño elegante con gradiente
+- Logo y descripción de la app
+
+📦 **Lista de Envíos**
+- ListView.builder para lista dinámica
+- Tarjetas con información del envío
+- Códigos de color por estado
+
+📋 **Detalle de Envío**
+- Información completa del paquete
+- TextField para registrar novedades
+- TextEditingController para manejo de entrada
+- Estados visuales con colores
+
+🎯 **Navegación**
+- Navigator con rutas anónimas
+- Transiciones suaves entre pantallas
+- Botones para volver
+
+---
+
+## 🧪 Widgets Utilizados
+
+### Arquitectura de Layouts
+- ✅ **Row** - Disposición horizontal
+- ✅ **Column** - Disposición vertical
+- ✅ **Expanded** - Expande widgets
+- ✅ **Flexible** - Widgets flexibles
+
+### Entrada de Datos
+- ✅ **TextField** - Campos de texto
+- ✅ **TextEditingController** - Control de entrada
+
+### Listas
+- ✅ **ListView.builder** - Listas dinámicas
+
+### Decoración
+- ✅ **Container** - Con gradientes, sombras, bordes
+- ✅ **BoxDecoration** - Decoración avanzada
+- ✅ **LinearGradient** - Gradientes personalizados
+
+### Navegación
+- ✅ **Navigator** - Gestión de rutas
+- ✅ **MaterialPageRoute** - Rutas anónimas
+
+### Recursos
+- ✅ **Image.asset** - Carga de imágenes
+- ✅ **Assets** - Configuración en pubspec.yaml
+
+---
+
+## 🔄 Flujo de Navegación
+
+```
+PantallaInicio (Carga)
+       ↓
+PantallaInicio (Principal)
+       ↓
+PantallaRastreoEnvios (Lista)
+       ↓
+PantallaDetalle (Formulario)
+```
+
+---
+
+## 📦 Dependencias Principales
+
+```yaml
+flutter:
+  sdk: flutter
+
+cupertino_icons: ^1.0.8
+flutter_launcher_icons: ^0.13.1
+```
+
+---
+
+## 🧰 Comandos Útiles
 
 | Comando | Descripción |
-|----------|-------------|
-| `mvn clean` | Limpia el proyecto |
-| `mvn install` | Compila y empaqueta la aplicación |
-| `mvn spring-boot:run` | Ejecuta la aplicación |
-| `mvn test` | Corre las pruebas unitarias |
+|---------|-------------|
+| `flutter pub get` | Descarga dependencias |
+| `flutter run` | Ejecuta en debug |
+| `flutter run --release` | Ejecuta en release |
+| `flutter build apk` | Genera APK |
+| `flutter build appbundle` | Genera App Bundle |
+| `flutter clean` | Limpia el proyecto |
+| `flutter pub upgrade` | Actualiza dependencias |
+| `flutter analyze` | Analiza código |
 
 ---
 
-## 🤝 Contribuciones
+## 🎯 Requisitos del Proyecto Cumplidos
 
-1. Haz un **fork** del repositorio.  
-2. Crea una rama:  
-   ```bash
-   git checkout -b feature/nueva-funcionalidad
-   ```
-3. Realiza tus cambios y haz commit:  
-   ```bash
-   git commit -m "Agregada nueva funcionalidad"
-   ```
-4. Sube tus cambios:  
-   ```bash
-   git push origin feature/nueva-funcionalidad
-   ```
-5. Abre un **Pull Request**.
+- ✅ 3 pantallas navegables
+- ✅ Row, Column, Expanded, Flexible
+- ✅ Navigator y rutas anónimas
+- ✅ TextField y TextEditingController
+- ✅ ListView.builder
+- ✅ Container con propiedades avanzadas
+- ✅ Assets configurados correctamente
+- ✅ APK compilada exitosamente
 
----
-
-## 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-## 👨‍💻 Autor
-
-**Manuel Villamil**  
-🔗 [GitHub](https://github.com/villamiljuan14)
